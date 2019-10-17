@@ -1,0 +1,141 @@
+@import "partials/function";
+@import "partials/variables";
+@import "partials/mixins";
+
+@include google-font("Alegreya+Sans");
+@include google-font("Titillium+Web");
+
+@include fancy-links;
+
+@include apply-to-ie-6 {
+  body {
+    font-size: 125%;
+  }
+}
+
+.error {
+  color: red;
+}
+
+.critical-error {
+  @extend .error;
+  bottom: 1px solid red;
+  font-weight: bold;
+}
+
+body {
+  font-family: $text-font;
+  color: $text-color;
+  color: rgb(10, 15, 50);
+  background-color: hsl(60, 50%, 100%);
+
+  @include screens($L){
+    font-size: 125%;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: $headline-font;
+}
+
+h2 {
+  @include large-text;
+}
+
+p {
+  font-family: $text-font;
+}
+
+a {
+  color: $link-color;
+
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+}
+.warning-button {
+  @include warning;
+  padding: 8px 12px;
+}
+
+.cta-button {
+  @extend .warning-button;
+  @extend .error;
+  @include rounded;
+  font-weight: bold;
+}
+
+.super-cta-button {
+  @extend .cta-button;
+  font-size: em(20px);
+}
+
+#header {
+  @include box($border: 1px solid #000, $radius: 12px);
+  @include box-shadow(2px 0px 4px #999, 1px 1px 6px $secondary-color);
+  height: $header-height;
+  background: $theme-color;
+
+  #main-menu {
+    
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    li {
+      align-items: center;;
+    }
+    a {
+      color: $menu-item-color;
+      border-bottom: 1px solid transparentize(#fefefe, 1);
+      padding: 6px 8px;
+      transition: border-bottom 0.5s;
+      transition-timing-function: ease-in-out;
+
+      &:hover {
+        border-bottom: 1px solid transparentize(#fefefe, .5);
+      }
+    }
+  }
+  
+  #logo {
+    display: none;
+  }
+}
+
+#main {
+  width: $content-width;
+
+  @include screens($L){
+    width: auto;
+    max-width: $content-width;
+  }
+  margin: auto;
+
+  #content {
+    float: left;
+    width: 6*$col;
+  }
+
+  #sidebar {
+    float: right;
+    width: 2*$col;
+
+    li {
+      list-style: none;
+      padding: em(16px) em(20px);
+      border-bottom: 1px dashed #999;
+
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+  }
+}
+
+#footer {
+  clear: both;
+  height: $footer-height;
+  background-color: $ternary-color;
+}
